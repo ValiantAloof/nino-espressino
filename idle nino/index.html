@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nino Espressino's Adventure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>Nino Espressino's Adventure</header>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="music/noir.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="main">
+    <div class="clicker-section">
+      <div id="espressoCount">Espressos: 0</div>
+      <div id="espressoPerSecond">Per Second: 0</div>
+      <button id="mainButton"></button>
+    </div>
+
+    <div class="upgrade-section" id="upgradeContainer">
+      <button class="upgrade-btn" onclick="buyUpgrade(1, 25)">Grinder <span>25</span></button>
+      <button class="upgrade-btn" onclick="buyUpgrade(2, 100)">Machine <span>100</span></button>
+      <button class="upgrade-btn" onclick="buyUpgrade(3, 500)">Cafe <span>500</span></button>
+    </div>
+  </div>
+
+  <div class="tab-section">
+    <div class="tab" onclick="switchTab('cutscene')">Story</div>
+    <div class="tab" onclick="switchTab('boss')">Boss</div>
+    <div class="tab" onclick="switchTab('save')">Save</div>
+    <div class="tab" onclick="switchTab('tutorial')">Tutorial</div>
+  </div>
+
+  <div class="cutscene" id="cutscene">
+    <p>Nino Espressino, once the most beloved espresso dealer in the noir alleys of Espressia, now finds himself racing against time. His rival, the milk-spiking menace <strong>Latte Luchador</strong>, has kidnapped his biscuit companion <strong>Bambino Biscottino</strong>. From the smoke-filled jazz cafés of <em>Moka Metropolis</em> to the espresso-stained ruins of the <em>Forgotten Roastery</em>, Nino must grind through waves of bean-thugs and defeat notorious café bosses. His journey is a blend of revenge, crema, and redemption.</p>
+  </div>
+
+  <div class="boss-battle" id="boss">
+    <p id="bossQuestion"></p>
+    <input type="text" id="bossAnswer" placeholder="Your answer here">
+    <button onclick="checkAnswer()">Submit</button>
+  </div>
+
+  <div class="save-system" id="save">
+    <button onclick="saveGame()">Save Game</button>
+    <button onclick="loadGame()">Load Game</button>
+    <button onclick="resetGame()">Reset Game</button>
+  </div>
+
+  <div class="tutorial" id="tutorial">
+    <p>Welcome to Nino's espresso-fueled journey! ☕<br>
+    - Click Nino to collect espresso.<br>
+    - Buy upgrades to brew faster.<br>
+    - Defeat bosses by answering trivia.<br>
+    - Save/load your progress anytime.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
