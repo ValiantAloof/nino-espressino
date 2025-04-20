@@ -25,7 +25,7 @@ header {
   padding: 1rem;
 }
 
-.next-adventure button {
+.next-adventure {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.75rem;
   background-color: #7a5b3f;
@@ -39,7 +39,7 @@ header {
   transition: transform 0.2s, background-color 0.3s;
 }
 
-.next-adventure button:hover {
+.next-adventure:hover {
   background-color: #a77a52;
   transform: scale(1.05);
 }
@@ -103,7 +103,6 @@ header {
   height: 32px;
   margin-right: 8px;
   background-image: url('art/biscuitto.png');
-  border-radius: 50%;
   /* Change icon with your image, for example: */
   /* background-image: url('path-to-your-icon.png'); */
   /* background-size: cover; */
