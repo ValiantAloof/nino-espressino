@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nino Espressino's Adventure</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css"> <!-- Changed to styles.css -->
 </head>
 <body>
   <header>Nino Espressino's Adventure</header>
@@ -25,23 +25,23 @@
     <div class="upgrade-section" id="upgradeContainer">
       <div class="upgrade-btn" onclick="buyUpgrade(0)">
         <div class="upgrade-icon"></div> <!-- Custom icon goes here -->
-        <span>Grinder</span>
-        <span class="upgrade-cost">15</span>
+        <span>Biskeytto</span>
+        <span class="upgrade-cost" id="cost0">15</span> <!-- Dynamically updated cost -->
       </div>
       <div class="upgrade-btn" onclick="buyUpgrade(1)">
         <div class="upgrade-icon"></div> <!-- Custom icon goes here -->
-        <span>Machine</span>
-        <span class="upgrade-cost">100</span>
+        <span>Vespizza</span>
+        <span class="upgrade-cost" id="cost1">100</span> <!-- Dynamically updated cost -->
       </div>
       <div class="upgrade-btn" onclick="buyUpgrade(2)">
         <div class="upgrade-icon"></div> <!-- Custom icon goes here -->
-        <span>Cafe</span>
-        <span class="upgrade-cost">1100</span>
+        <span>Fiatortellini</span>
+        <span class="upgrade-cost" id="cost2">1100</span> <!-- Dynamically updated cost -->
       </div>
       <div class="upgrade-btn" onclick="buyUpgrade(3)">
         <div class="upgrade-icon"></div> <!-- Custom icon goes here -->
-        <span>Roaster</span>
-        <span class="upgrade-cost">12000</span>
+        <span>Ferrarisotto</span>
+        <span class="upgrade-cost" id="cost3">12000</span> <!-- Dynamically updated cost -->
       </div>
     </div>
 
