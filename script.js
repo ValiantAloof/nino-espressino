@@ -30,16 +30,13 @@ function updateCounter() {
   });
 
   // Check for win condition
-setInterval(() => {
-  espresso += eps / 10;
-  updateCounter();
-  
+
   if (espresso >= 1000000) {
     document.getElementById("nextAdventureBtn").style.display = "block";
     alert("You got enough espressos to bribe Latte Luchador. You got Bambino Biscottino back...this time!");
     resetGame();
   }
-}, 100);
+}
 
   function goToNextAdventure() {
   window.location.href = "index2.html"; // 👈 Make sure index2.html is in the same folder
