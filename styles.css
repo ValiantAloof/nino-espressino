@@ -82,7 +82,8 @@ header {
   width: 32px;
   height: 32px;
   margin-right: 8px;
-  background-color: #fff;
+  background-image: url('art/biscuitto.png');
+  background-size: cover;
   border-radius: 50%;
   /* Change icon with your image, for example: */
   /* background-image: url('path-to-your-icon.png'); */
