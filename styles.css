@@ -1,4 +1,4 @@
-/* style.css */
+/* styles.css */
 body {
   margin: 0;
   font-family: 'Press Start 2P', cursive;
@@ -79,8 +79,8 @@ header {
 }
 
 .upgrade-icon {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   margin-right: 8px;
   background-color: #fff;
   border-radius: 50%;
@@ -90,7 +90,7 @@ header {
 }
 
 .upgrade-cost {
-  font-size: 1.1rem;
+  font-size: 1.2rem; /* Slightly bigger font size */
   color: #f4e1c1;
 }
 
