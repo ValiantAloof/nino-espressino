@@ -22,6 +22,12 @@ const questions = [
 function updateCounter() {
   document.getElementById("espressoCount").textContent = `Espressos: ${Math.floor(espresso)}`;
   document.getElementById("espressoPerSecond").textContent = `Per Second: ${eps.toFixed(1)}`;
+
+  // Check for win condition
+  if (espresso >= 1000000) {
+    alert("Congratulations! You've reached 1 million espressos and won the game!");
+    resetGame();
+  }
 }
 
 document.getElementById("mainButton").addEventListener("click", () => {
