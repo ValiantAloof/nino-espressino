@@ -1,84 +1,129 @@
+/* style.css */
 body {
   margin: 0;
   font-family: 'Press Start 2P', cursive;
-  background-image: url('art/textures/back.png');
+  background-image: url('art/textures/back.png'); /* Background Image */
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   background-attachment: fixed;
   overflow-x: hidden;
-  color: #fff4d6;
 }
+
 header {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   padding: 1rem;
-  background-color: rgba(43, 43, 43, 0.85);
+  background-color: rgba(43, 43, 43, 0.8);
 }
+
 .main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 1rem;
 }
+
 .clicker-section {
   text-align: center;
+  margin: 1rem;
 }
+
 #mainButton {
-  width: 220px;
-  height: 220px;
+  width: 180px;
+  height: 180px;
   background: url('art/nino.gif') no-repeat center center / contain;
   border: none;
   cursor: pointer;
 }
-#mainButton.clicked {
-  transform: scale(1.05);
-  transition: transform 0.1s ease;
-}
-#espressoCount, #espressoPerSecond {
+
+#espressoCount {
   font-size: 1.5rem;
   margin: 0.5rem;
 }
+
+#espressoPerSecond {
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+}
+
 .upgrade-section {
   width: 100%;
   max-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 1rem auto;
 }
+
 .upgrade-btn {
-  background-color: #3c2f2f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #5e4630;
   color: #fff8e1;
-  border: 3px solid #b88c65;
+  border: 3px solid #9d6b4f;
   border-radius: 12px;
-  padding: 0.75rem 1rem;
-  margin: 0.4rem 0;
-  font-size: 1rem;
-  font-family: 'Press Start 2P', cursive;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  font-size: 0.8rem;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
 }
+
 .upgrade-btn:hover {
   transform: scale(1.05);
-  background-color: #5a4035;
+  background-color: #7a5b3f;
+  box-shadow: 0 0 10px #fff8e1;
 }
+
+.upgrade-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  background-color: #fff;
+  border-radius: 50%;
+  /* Change icon with your image, for example: */
+  /* background-image: url('path-to-your-icon.png'); */
+  /* background-size: cover; */
+}
+
+.upgrade-cost {
+  font-size: 1.1rem;
+  color: #f4e1c1;
+}
+
 .tab-section {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
 }
+
 .tab {
   margin: 0 1rem;
   cursor: pointer;
 }
-.cutscene, .boss-battle, .save-system, .tutorial {
+
+.cutscene, .boss-battle {
   display: none;
   background-color: rgba(0,0,0,0.7);
   padding: 1rem;
-  margin: 1rem auto;
-  border: 2px solid #fff8e1;
-  max-width: 600px;
-  color: #fff8e1;
-  font-size: 0.85rem;
+  border: 2px solid #fff;
+  margin: 1rem;
 }
+
 .visible {
   display: block;
+}
+
+.save-system {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+input[type='text'] {
+  font-family: 'Press Start 2P';
+  width: 100%;
+  margin-top: 0.5rem;
 }
