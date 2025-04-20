@@ -23,6 +23,12 @@ function updateCounter() {
   document.getElementById("espressoCount").textContent = `Espressos: ${Math.floor(espresso)}`;
   document.getElementById("espressoPerSecond").textContent = `Per Second: ${eps.toFixed(1)}`;
 
+  // Update the cost of each upgrade dynamically
+  upgrades.forEach((upgrade, index) => {
+    const cost = Math.floor(upgrade.baseCost * Math.pow(1.15, upgrade.quantity));
+    document.getElementById(`cost${index}`).textContent = cost;
+  });
+
   // Check for win condition
   if (espresso >= 1000000) {
     alert("Congratulations! You've reached 1 million espressos and won the game!");
