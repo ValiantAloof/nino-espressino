@@ -16,7 +16,7 @@ const questions = [
   { q: "How many grams of coffee are in a double shot?", a: ["18", "18 grams"] },
   { q: "What pressure (in bars) is typically used to brew espresso?", a: ["9", "nine"] },
   { q: "Which country is known as the birthplace of espresso?", a: ["italy"] },
-  { q: "What milk-based espresso drink has a 1:1 coffee to milk ratio?", a: ["macchiato"] }
+  { q: "What milk-based espresso drink has a 1:1 coffee to milk ratio?", a: ["cappuccino"] }
 ];
 
 function updateCounter() {
@@ -30,10 +30,19 @@ function updateCounter() {
   });
 
   // Check for win condition
+setInterval(() => {
+  espresso += eps / 10;
+  updateCounter();
+  
   if (espresso >= 1000000) {
-    alert("Congratulations! You've reached 1 million espressos and won the game!");
+    document.getElementById("nextAdventureBtn").style.display = "block";
+    alert("You got enough espressos to bribe Latte Luchador. You got Bambino Biscottino back...this time!");
     resetGame();
   }
+}, 100);
+
+  function goToNextAdventure() {
+  window.location.href = "index2.html"; // 👈 Make sure index2.html is in the same folder
 }
 
 document.getElementById("mainButton").addEventListener("click", () => {
