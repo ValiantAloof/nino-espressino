@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nino Espressino's Adventure</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>Nino Espressino's Adventure</header>
@@ -17,15 +17,18 @@
 
   <div class="main">
     <div class="clicker-section">
-      <div id="espressoCount">Espressos: 0</div>
-      <div id="espressoPerSecond">Per Second: 0</div>
+      <div class="counter-wrapper">
+        <div id="espressoCount">Espressos: 0</div>
+        <div id="espressoPerSecond">Per Second: 0</div>
+      </div>
       <button id="mainButton"></button>
     </div>
 
     <div class="upgrade-section" id="upgradeContainer">
-      <button class="upgrade-btn" onclick="buyUpgrade(1, 25)">Grinder <span>25</span></button>
-      <button class="upgrade-btn" onclick="buyUpgrade(2, 100)">Machine <span>100</span></button>
-      <button class="upgrade-btn" onclick="buyUpgrade(3, 500)">Cafe <span>500</span></button>
+      <button class="upgrade-btn" onclick="buyUpgrade(0)">Grinder <span></span></button>
+      <button class="upgrade-btn" onclick="buyUpgrade(1)">Machine <span></span></button>
+      <button class="upgrade-btn" onclick="buyUpgrade(2)">Cafe <span></span></button>
+      <button class="upgrade-btn" onclick="buyUpgrade(3)">Empire <span></span></button>
     </div>
   </div>
 
@@ -37,7 +40,8 @@
   </div>
 
   <div class="cutscene" id="cutscene">
-    <p>Nino Espressino, once the most beloved espresso dealer in the noir alleys of Espressia, now finds himself racing against time. His rival, the milk-spiking menace <strong>Latte Luchador</strong>, has kidnapped his biscuit companion <strong>Bambino Biscottino</strong>. From the smoke-filled jazz cafés of <em>Moka Metropolis</em> to the espresso-stained ruins of the <em>Forgotten Roastery</em>, Nino must grind through waves of bean-thugs and defeat notorious café bosses. His journey is a blend of revenge, crema, and redemption.</p>
+    <p>Nino Espressino, once a humble car part dealer and espresso aficionado, now embarks on a journey of revenge and redemption. His best friend, Bambino Biscottino, has been stolen by Latte Luchador—the mysterious masked villain who dares to add milk to espresso.</p>
+    <p>Nino travels through twisted cafes, haunted espresso farms, and the Molten Mocha Mines, collecting beans and battling baristas corrupted by steamed milk.</p>
   </div>
 
   <div class="boss-battle" id="boss">
@@ -53,11 +57,13 @@
   </div>
 
   <div class="tutorial" id="tutorial">
-    <p>Welcome to Nino's espresso-fueled journey! ☕<br>
-    - Click Nino to collect espresso.<br>
-    - Buy upgrades to brew faster.<br>
-    - Defeat bosses by answering trivia.<br>
-    - Save/load your progress anytime.</p>
+    <p>Welcome to Nino Espressino's Adventure!</p>
+    <ul>
+      <li>Click the espresso machine to brew espressos manually.</li>
+      <li>Buy upgrades to increase your espresso per second (EPS).</li>
+      <li>Face off against Latte Luchador's espresso quiz to earn bonuses.</li>
+      <li>Don't forget to save your progress!</li>
+    </ul>
   </div>
 
   <script src="script.js"></script>
