@@ -17,53 +17,56 @@
 
   <div class="main">
     <div class="clicker-section">
-      <div class="counter-wrapper">
-        <div id="espressoCount">Espressos: 0</div>
-        <div id="espressoPerSecond">Per Second: 0</div>
-      </div>
+      <div id="espressoCount">Espressos: 0</div>
+      <div id="espressoPerSecond">Per Second: 0</div>
       <button id="mainButton"></button>
     </div>
 
     <div class="upgrade-section" id="upgradeContainer">
-      <button class="upgrade-btn" onclick="buyUpgrade(0)">Grinder <span></span></button>
-      <button class="upgrade-btn" onclick="buyUpgrade(1)">Machine <span></span></button>
-      <button class="upgrade-btn" onclick="buyUpgrade(2)">Cafe <span></span></button>
-      <button class="upgrade-btn" onclick="buyUpgrade(3)">Empire <span></span></button>
+      <div class="upgrade-btn" onclick="buyUpgrade(0)">
+        <div class="upgrade-icon"></div> <!-- Custom icon goes here -->
+        <span>Grinder</span>
+        <span class="upgrade-cost">15</span>
+      </div>
+      <div class="upgrade-btn" onclick="buyUpgrade(1)">
+        <div class="upgrade-icon"></div> <!-- Custom icon goes here -->
+        <span>Machine</span>
+        <span class="upgrade-cost">100</span>
+      </div>
+      <div class="upgrade-btn" onclick="buyUpgrade(2)">
+        <div class="upgrade-icon"></div> <!-- Custom icon goes here -->
+        <span>Cafe</span>
+        <span class="upgrade-cost">1100</span>
+      </div>
+      <div class="upgrade-btn" onclick="buyUpgrade(3)">
+        <div class="upgrade-icon"></div> <!-- Custom icon goes here -->
+        <span>Roaster</span>
+        <span class="upgrade-cost">12000</span>
+      </div>
     </div>
-  </div>
 
-  <div class="tab-section">
-    <div class="tab" onclick="switchTab('cutscene')">Story</div>
-    <div class="tab" onclick="switchTab('boss')">Boss</div>
-    <div class="tab" onclick="switchTab('save')">Save</div>
-    <div class="tab" onclick="switchTab('tutorial')">Tutorial</div>
-  </div>
+    <div class="tab-section">
+      <div class="tab" onclick="switchTab('cutscene')">Story</div>
+      <div class="tab" onclick="switchTab('boss')">Boss</div>
+      <div class="tab" onclick="switchTab('save')">Save</div>
+    </div>
 
-  <div class="cutscene" id="cutscene">
-    <p>Nino Espressino, once a humble car part dealer and espresso aficionado, now embarks on a journey of revenge and redemption. His best friend, Bambino Biscottino, has been stolen by Latte Luchador—the mysterious masked villain who dares to add milk to espresso.</p>
-    <p>Nino travels through twisted cafes, haunted espresso farms, and the Molten Mocha Mines, collecting beans and battling baristas corrupted by steamed milk.</p>
-  </div>
+    <div class="cutscene" id="cutscene">
+      <p>Nino Espressino, a car part dealer and espresso enthusiast, is on a quest to rescue his best friend Bambino Biscottino who was stolen by the villainous Latte Luchador.</p>
+      <p>He must explore cafes, race alleys, and confront the milk menace himself.</p>
+    </div>
 
-  <div class="boss-battle" id="boss">
-    <p id="bossQuestion"></p>
-    <input type="text" id="bossAnswer" placeholder="Your answer here">
-    <button onclick="checkAnswer()">Submit</button>
-  </div>
+    <div class="boss-battle" id="boss">
+      <p id="bossQuestion"></p>
+      <input type="text" id="bossAnswer" placeholder="Your answer here">
+      <button onclick="checkAnswer()">Submit</button>
+    </div>
 
-  <div class="save-system" id="save">
-    <button onclick="saveGame()">Save Game</button>
-    <button onclick="loadGame()">Load Game</button>
-    <button onclick="resetGame()">Reset Game</button>
-  </div>
-
-  <div class="tutorial" id="tutorial">
-    <p>Welcome to Nino Espressino's Adventure!</p>
-    <ul>
-      <li>Click the espresso machine to brew espressos manually.</li>
-      <li>Buy upgrades to increase your espresso per second (EPS).</li>
-      <li>Face off against Latte Luchador's espresso quiz to earn bonuses.</li>
-      <li>Don't forget to save your progress!</li>
-    </ul>
+    <div class="save-system" id="save">
+      <button onclick="saveGame()">Save Game</button>
+      <button onclick="loadGame()">Load Game</button>
+      <button onclick="resetGame()">Reset Game</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
