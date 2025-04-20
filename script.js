@@ -3,11 +3,12 @@ let espresso = 0;
 let eps = 0;
 let answeredQuestions = [];
 
+// Upgrade configuration
 const upgrades = [
-  { eps: 0.1, cost: 15 },
-  { eps: 1, cost: 100 },
-  { eps: 8, cost: 1100 },
-  { eps: 47, cost: 12000 }
+  { baseCost: 15, epsValue: 0.1, quantity: 0 },
+  { baseCost: 100, epsValue: 1, quantity: 0 },
+  { baseCost: 1100, epsValue: 8, quantity: 0 },
+  { baseCost: 12000, epsValue: 47, quantity: 0 }
 ];
 
 const questions = [
@@ -21,27 +22,41 @@ const questions = [
 function updateCounter() {
   document.getElementById("espressoCount").textContent = `Espressos: ${Math.floor(espresso)}`;
   document.getElementById("espressoPerSecond").textContent = `Per Second: ${eps.toFixed(1)}`;
-  updateUpgradeUI();
 }
+
+document.getElementById("mainButton").addEventListener("click", () => {
+  espresso++;
+  updateCounter();
+
+  const btn = document.getElementById("mainButton");
+  btn.classList.add("clicked");
+  setTimeout(() => btn.classList.remove("clicked"), 100);
+
+  const popup = document.createElement("div");
+  popup.textContent = "+1";
+  popup.className = "click-popup";
+  popup.style.position = "absolute";
+  popup.style.left = `${btn.offsetLeft + btn.offsetWidth / 2}px`;
+  popup.style.top = `${btn.offsetTop}px`;
+  popup.style.fontSize = "1rem";
+  popup.style.color = "#fff8e1";
+  popup.style.animation = "popUp 0.6s ease-out forwards";
+  document.body.appendChild(popup);
+  setTimeout(() => popup.remove(), 600);
+});
 
 function buyUpgrade(index) {
   const upgrade = upgrades[index];
-  if (espresso >= upgrade.cost) {
-    espresso -= upgrade.cost;
-    eps += upgrade.eps;
-    upgrade.cost = Math.floor(upgrade.cost * 1.15); // Increase cost by 15%
+  const cost = Math.floor(upgrade.baseCost * Math.pow(1.15, upgrade.quantity));
+
+  if (espresso >= cost) {
+    espresso -= cost;
+    eps += upgrade.epsValue;
+    upgrade.quantity++;
     updateCounter();
   } else {
     alert("Not enough espressos!");
   }
-}
-
-function updateUpgradeUI() {
-  const container = document.getElementById("upgradeContainer");
-  const buttons = container.querySelectorAll(".upgrade-btn");
-  buttons.forEach((btn, i) => {
-    btn.querySelector("span").textContent = upgrades[i].cost;
-  });
 }
 
 function switchTab(id) {
@@ -82,12 +97,7 @@ function checkAnswer() {
 }
 
 function saveGame() {
-  const save = {
-    espresso,
-    eps,
-    answeredQuestions,
-    upgrades: upgrades.map(u => ({ eps: u.eps, cost: u.cost }))
-  };
+  const save = { espresso, eps, answeredQuestions, upgrades };
   localStorage.setItem("ninoSave", JSON.stringify(save));
   alert("Game Saved!");
 }
@@ -98,11 +108,7 @@ function loadGame() {
     espresso = load.espresso;
     eps = load.eps;
     answeredQuestions = load.answeredQuestions || [];
-    if (load.upgrades) {
-      upgrades.forEach((u, i) => {
-        u.cost = load.upgrades[i].cost;
-      });
-    }
+    if (load.upgrades) upgrades.forEach((u, i) => Object.assign(u, load.upgrades[i]));
     updateCounter();
     alert("Game Loaded!");
   }
@@ -113,10 +119,7 @@ function resetGame() {
   espresso = 0;
   eps = 0;
   answeredQuestions = [];
-  upgrades[0].cost = 15;
-  upgrades[1].cost = 100;
-  upgrades[2].cost = 1100;
-  upgrades[3].cost = 12000;
+  upgrades.forEach(upg => upg.quantity = 0);
   updateCounter();
   alert("Progress Reset.");
 }
