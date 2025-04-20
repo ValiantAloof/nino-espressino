@@ -25,6 +25,25 @@ header {
   padding: 1rem;
 }
 
+.next-adventure button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.75rem;
+  background-color: #7a5b3f;
+  border: 3px solid #9d6b4f;
+  color: #fff8e1;
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #fff8e1;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.next-adventure button:hover {
+  background-color: #a77a52;
+  transform: scale(1.05);
+}
+
 .clicker-section {
   text-align: center;
   margin: 1rem;
