@@ -18,6 +18,22 @@ header {
   background-color: rgba(43, 43, 43, 0.8);
 }
 
+.audio-controls button {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #5e4630;
+  color: #fff8e1;
+  border: 3px solid #9d6b4f;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+.audio-controls button:hover {
+  background-color: #7a5b3f;
+  transform: scale(1.05);
+}
+
 .main {
   display: flex;
   flex-wrap: wrap;
