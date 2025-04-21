@@ -3,6 +3,20 @@ let espresso = 0;
 let eps = 0;
 let answeredQuestions = [];
 
+
+const music = document.getElementById("bg-music");
+const toggleMusicBtn = document.getElementById("toggleMusic");
+
+toggleMusicBtn.addEventListener("click", () => {
+  if (music.muted) {
+    music.muted = false;
+    toggleMusicBtn.textContent = "🔊 Mute Music";
+  } else {
+    music.muted = true;
+    toggleMusicBtn.textContent = "🔈 Unmute Music";
+  }
+});
+
 // Upgrade configuration
 const upgrades = [
   { baseCost: 15, epsValue: 0.1, quantity: 0 },
