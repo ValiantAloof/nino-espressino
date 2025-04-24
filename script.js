@@ -146,7 +146,7 @@ ffunction checkAnswer() {
 }
 
 function saveGame() {
-  const save = { espresso, eps, answeredQuestions, upgrades };
+  const save = { espresso, eps, espressoPerClick, answeredQuestions, upgrades };
   localStorage.setItem("ninoSave", JSON.stringify(save));
   alert("Game Saved!");
 }
@@ -156,6 +156,7 @@ function loadGame() {
   if (load) {
     espresso = load.espresso;
     eps = load.eps;
+    espressoPerClick = load.espressoPerClick || 1;
     answeredQuestions = load.answeredQuestions || [];
     if (load.upgrades) upgrades.forEach((u, i) => Object.assign(u, load.upgrades[i]));
     updateCounter();
