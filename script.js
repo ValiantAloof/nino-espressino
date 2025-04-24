@@ -1,24 +1,43 @@
-// script.js
 let espresso = 0;
 let eps = 0;
-let answeredQuestions = [];
 let espressoPerClick = 1;
+let answeredQuestions = [];
 
+document.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
+  const toggleMusicBtn = document.getElementById("toggleMusic");
 
-const music = document.getElementById("bg-music");
-const toggleMusicBtn = document.getElementById("toggleMusic");
-
-toggleMusicBtn.addEventListener("click", () => {
-  if (music.muted) {
-    music.muted = false;
-    toggleMusicBtn.textContent = "🔊 Mute Music";
-  } else {
-    music.muted = true;
-    toggleMusicBtn.textContent = "🔈 Unmute Music";
+  if (toggleMusicBtn && music) {
+    toggleMusicBtn.addEventListener("click", () => {
+      music.muted = !music.muted;
+      toggleMusicBtn.textContent = music.muted ? "🔈 Unmute Music" : "🔊 Mute Music";
+    });
   }
+
+  document.getElementById("mainButton").addEventListener("click", () => {
+    espresso += espressoPerClick;
+    updateCounter();
+
+    const btn = document.getElementById("mainButton");
+    btn.classList.add("clicked");
+    setTimeout(() => btn.classList.remove("clicked"), 100);
+
+    const popup = document.createElement("div");
+    popup.textContent = `+${espressoPerClick}`;
+    popup.className = "click-popup";
+    popup.style.position = "absolute";
+    popup.style.left = `${btn.offsetLeft + btn.offsetWidth / 2}px`;
+    popup.style.top = `${btn.offsetTop}px`;
+    popup.style.fontSize = "1rem";
+    popup.style.color = "#fff8e1";
+    popup.style.animation = "popUp 0.6s ease-out forwards";
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 600);
+  });
+
+  updateCounter();
 });
 
-// Upgrade configuration
 const upgrades = [
   { baseCost: 15, epsValue: 0.1, quantity: 0 },
   { baseCost: 100, epsValue: 1, quantity: 0 },
@@ -28,69 +47,43 @@ const upgrades = [
 
 const questions = [
   { q: "What is the ideal temperature range (in °C) for espresso extraction?", a: ["90", "95"], reward: () => { espresso += 100; } },
-
   { q: "How many grams are typically used in a double shot of espresso?", a: ["18", "18 grams"], reward: () => { espressoPerClick += 1; } },
-
   { q: "What pressure (in bars) is commonly used to brew espresso?", a: ["9", "nine"], reward: () => { espresso += 1000; } },
-
   { q: "Which country is known as the birthplace of espresso?", a: ["italy"], reward: () => { espressoPerClick += 1; } },
-
   { q: "What milk-based espresso drink has a 1:1 coffee to milk ratio?", a: ["macchiato"], reward: () => { espresso += 10000; } },
-
   { q: "Name the device used for manually brewing espresso using a lever.", a: ["lever machine", "manual espresso machine"], reward: () => { espressoPerClick += 2; } },
-
   { q: "What is the name of the fine grind size used for espresso?", a: ["fine"], reward: () => { espresso += 100000; } },
-
   { q: "How long (in seconds) should a typical espresso shot take to brew?", a: ["25", "30"], reward: () => { espresso += 100000; } },
-
   { q: "Which part of the espresso machine maintains pressure and temperature?", a: ["boiler", "group head"], reward: () => { espresso += 100000; } },
-
   { q: "What term refers to the golden layer of foam atop a well-pulled espresso shot?", a: ["crema"], reward: () => { espresso += 100000; } },
 ];
 
 function updateCounter() {
-  document.getElementById("espressoCount").textContent = `Espressos: ${Math.floor(espresso)}`;
-  document.getElementById("espressoPerSecond").textContent = `Per Second: ${eps.toFixed(1)}`;
+  const espressoCount = document.getElementById("espressoCount");
+  const espressoPerSecond = document.getElementById("espressoPerSecond");
 
-  // Update the cost of each upgrade dynamically
+  if (espressoCount) espressoCount.textContent = `Espressos: ${Math.floor(espresso)}`;
+  if (espressoPerSecond) espressoPerSecond.textContent = `Per Second: ${eps.toFixed(1)}`;
+
   upgrades.forEach((upgrade, index) => {
-    const cost = Math.floor(upgrade.baseCost * Math.pow(1.15, upgrade.quantity));
-    document.getElementById(`cost${index}`).textContent = cost;
+    const costElement = document.getElementById(`cost${index}`);
+    if (costElement) {
+      const cost = Math.floor(upgrade.baseCost * Math.pow(1.15, upgrade.quantity));
+      costElement.textContent = cost;
+    }
   });
 
-  // Check for win condition
-
   if (espresso >= 1000000) {
-    document.getElementById("nextAdventureBtn").style.display = "block";
-    alert("You got enough espressos to bribe Latte Luchador. You got Bambino Biscottino back...this time!");
+    const nextBtn = document.getElementById("nextAdventureBtn");
+    if (nextBtn) nextBtn.style.display = "block";
+    alert("You got enough espressos to bribe Latte Luchador. You got Bambino Biscottino back... this time!");
     resetGame();
   }
 }
 
-  function goToNextAdventure() {
-  window.location.href = "index2.html"; // 👈 Make sure index2.html is in the same folder
+function goToNextAdventure() {
+  window.location.href = "index2.html";
 }
-
-document.getElementById("mainButton").addEventListener("click", () => {
-  espresso += espressoPerClick;
-  updateCounter();
-
-  const btn = document.getElementById("mainButton");
-  btn.classList.add("clicked");
-  setTimeout(() => btn.classList.remove("clicked"), 100);
-
-  const popup = document.createElement("div");
-  popup.textContent = "+1";
-  popup.className = "click-popup";
-  popup.style.position = "absolute";
-  popup.style.left = `${btn.offsetLeft + btn.offsetWidth / 2}px`;
-  popup.style.top = `${btn.offsetTop}px`;
-  popup.style.fontSize = "1rem";
-  popup.style.color = "#fff8e1";
-  popup.style.animation = "popUp 0.6s ease-out forwards";
-  document.body.appendChild(popup);
-  setTimeout(() => popup.remove(), 600);
-});
 
 function buyUpgrade(index) {
   const upgrade = upgrades[index];
@@ -114,16 +107,19 @@ function switchTab(id) {
 
 function showBossQuestion() {
   const available = questions.filter((_, i) => !answeredQuestions.includes(i));
+  const questionElement = document.getElementById("bossQuestion");
+
   if (available.length === 0) {
-    document.getElementById("bossQuestion").textContent = "You've answered all boss questions!";
+    questionElement.textContent = "You've answered all boss questions!";
     return;
   }
+
   const index = questions.indexOf(available[Math.floor(Math.random() * available.length)]);
-  document.getElementById("bossQuestion").dataset.index = index;
-  document.getElementById("bossQuestion").textContent = questions[index].q;
+  questionElement.dataset.index = index;
+  questionElement.textContent = questions[index].q;
 }
 
-ffunction checkAnswer() {
+function checkAnswer() {
   const input = document.getElementById("bossAnswer").value.toLowerCase().trim();
   const index = parseInt(document.getElementById("bossQuestion").dataset.index);
   const currentQuestion = questions[index];
@@ -131,7 +127,7 @@ ffunction checkAnswer() {
 
   if (correct) {
     if (!answeredQuestions.includes(index)) {
-      currentQuestion.reward(); // Apply the reward!
+      currentQuestion.reward();
       answeredQuestions.push(index);
       alert("Correct! You earned a reward.");
     } else {
@@ -168,6 +164,7 @@ function resetGame() {
   localStorage.removeItem("ninoSave");
   espresso = 0;
   eps = 0;
+  espressoPerClick = 1;
   answeredQuestions = [];
   upgrades.forEach(upg => upg.quantity = 0);
   updateCounter();
@@ -183,5 +180,3 @@ window.addEventListener('click', () => {
   const music = document.getElementById('bg-music');
   if (music && music.paused) music.play();
 });
-
-updateCounter();
