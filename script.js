@@ -2,6 +2,7 @@
 let espresso = 0;
 let eps = 0;
 let answeredQuestions = [];
+let espressoPerClick = 1;
 
 
 const music = document.getElementById("bg-music");
@@ -26,11 +27,25 @@ const upgrades = [
 ];
 
 const questions = [
-  { q: "What is the perfect temperature for espresso extraction?", a: ["90", "95"] },
-  { q: "How many grams of coffee are in a double shot?", a: ["18", "18 grams"] },
-  { q: "What pressure (in bars) is typically used to brew espresso?", a: ["9", "nine"] },
-  { q: "Which country is known as the birthplace of espresso?", a: ["italy"] },
-  { q: "What milk-based espresso drink has a 1:1 coffee to milk ratio?", a: ["cappuccino"] }
+  { q: "What is the ideal temperature range (in °C) for espresso extraction?", a: ["90", "95"], reward: () => { espresso += 100; } },
+
+  { q: "How many grams are typically used in a double shot of espresso?", a: ["18", "18 grams"], reward: () => { espressoPerClick += 1; } },
+
+  { q: "What pressure (in bars) is commonly used to brew espresso?", a: ["9", "nine"], reward: () => { espresso += 1000; } },
+
+  { q: "Which country is known as the birthplace of espresso?", a: ["italy"], reward: () => { espressoPerClick += 1; } },
+
+  { q: "What milk-based espresso drink has a 1:1 coffee to milk ratio?", a: ["macchiato"], reward: () => { espresso += 10000; } },
+
+  { q: "Name the device used for manually brewing espresso using a lever.", a: ["lever machine", "manual espresso machine"], reward: () => { espressoPerClick += 2; } },
+
+  { q: "What is the name of the fine grind size used for espresso?", a: ["fine"], reward: () => { espresso += 100000; } },
+
+  { q: "How long (in seconds) should a typical espresso shot take to brew?", a: ["25", "30"], reward: () => { espresso += 100000; } },
+
+  { q: "Which part of the espresso machine maintains pressure and temperature?", a: ["boiler", "group head"], reward: () => { espresso += 100000; } },
+
+  { q: "What term refers to the golden layer of foam atop a well-pulled espresso shot?", a: ["crema"], reward: () => { espresso += 100000; } },
 ];
 
 function updateCounter() {
@@ -57,7 +72,7 @@ function updateCounter() {
 }
 
 document.getElementById("mainButton").addEventListener("click", () => {
-  espresso++;
+  espresso += espressoPerClick;
   updateCounter();
 
   const btn = document.getElementById("mainButton");
@@ -108,23 +123,25 @@ function showBossQuestion() {
   document.getElementById("bossQuestion").textContent = questions[index].q;
 }
 
-function checkAnswer() {
+ffunction checkAnswer() {
   const input = document.getElementById("bossAnswer").value.toLowerCase().trim();
   const index = parseInt(document.getElementById("bossQuestion").dataset.index);
-  const correct = questions[index].a.some(ans => input.includes(ans));
+  const currentQuestion = questions[index];
+  const correct = currentQuestion.a.some(ans => input.includes(ans));
 
   if (correct) {
     if (!answeredQuestions.includes(index)) {
-      espresso += 100;
+      currentQuestion.reward(); // Apply the reward!
       answeredQuestions.push(index);
-      alert("Correct! You earned 100 espressos.");
+      alert("Correct! You earned a reward.");
     } else {
-      alert("You've already answered this question correctly before.");
+      alert("You've already answered this question.");
     }
   } else {
     alert("Wrong! Latte Luchador wins...");
     resetGame();
   }
+
   updateCounter();
 }
 
